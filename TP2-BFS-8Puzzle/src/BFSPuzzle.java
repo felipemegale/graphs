@@ -3,11 +3,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 class Graph {
     private ArrayList<ArrayList<Vertex>> puzzles;
-    public ArrayList<Vertex> sons;
+    private ArrayList<Vertex> sons;
     private ArrayDeque<Vertex> queue;
     private HashMap<String, Boolean> map;
 
@@ -51,20 +52,18 @@ class Graph {
                     if (map.get(v.movePuzzle(0, 1)) == null || map.get(v.movePuzzle(0, 1)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(0, 1));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(0, 3)) == null || map.get(v.movePuzzle(0, 3)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(0, 3));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     }
-
-//                    for (Vertex i : sons) {
-//                        System.out.println("Case 0: "+i.getPuzzle());
-//                    }
 
                     break;
 
@@ -73,26 +72,25 @@ class Graph {
                     if (map.get(v.movePuzzle(1, 0)) == null || map.get(v.movePuzzle(1, 0)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(1, 0));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(1, 2)) == null || map.get(v.movePuzzle(1, 2)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(1, 2));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(1, 4)) == null || map.get(v.movePuzzle(1, 4)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(1, 4));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     }
-
-//                    for (Vertex i : sons) {
-//                        System.out.println("Case 1: "+i.getPuzzle());
-//                    }
 
                     break;
 
@@ -101,20 +99,18 @@ class Graph {
                     if (map.get(v.movePuzzle(2, 1)) == null || map.get(v.movePuzzle(2, 1)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(2, 1));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(2, 5)) == null || map.get(v.movePuzzle(2, 5)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(2, 5));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     }
-
-//                    for (Vertex i : sons) {
-//                        System.out.println("Case 2: "+i.getPuzzle());
-//                    }
 
                     break;
 
@@ -123,26 +119,25 @@ class Graph {
                     if (map.get(v.movePuzzle(3, 0)) == null || map.get(v.movePuzzle(3, 0)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(3, 0));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(3, 4)) == null || map.get(v.movePuzzle(3, 4)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(3, 4));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(3, 6)) == null || map.get(v.movePuzzle(3, 6)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(3, 6));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     }
-
-//                    for (Vertex i : sons) {
-//                        System.out.println("Case 3: "+i.getPuzzle());
-//                    }
 
                     break;
 
@@ -151,32 +146,32 @@ class Graph {
                     if (map.get(v.movePuzzle(4, 1)) == null || map.get(v.movePuzzle(4, 1)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(4, 1));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(4, 3)) == null || map.get(v.movePuzzle(4, 3)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(4, 3));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(4, 5)) == null || map.get(v.movePuzzle(4, 5)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(4, 5));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(4, 7)) == null || map.get(v.movePuzzle(4, 7)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(4, 7));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     }
-
-//                    for (Vertex i : sons) {
-//                        System.out.println("Case 4: "+i.getPuzzle());
-//                    }
 
                     break;
 
@@ -185,26 +180,25 @@ class Graph {
                     if (map.get(v.movePuzzle(5, 2)) == null || map.get(v.movePuzzle(5, 2)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(5, 2));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(5, 4)) == null || map.get(v.movePuzzle(5, 4)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(5, 4));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(5, 8)) == null || map.get(v.movePuzzle(5, 8)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(5, 8));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     }
-
-//                    for (Vertex i : sons) {
-//                        System.out.println("Case 5: "+i.getPuzzle());
-//                    }
 
                     break;
 
@@ -213,20 +207,18 @@ class Graph {
                     if (map.get(v.movePuzzle(6, 3)) == null || map.get(v.movePuzzle(6, 3)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(6, 3));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(6, 7)) == null || map.get(v.movePuzzle(6, 7)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(6, 7));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     }
-
-//                    for (Vertex i : sons) {
-//                        System.out.println("Case 6: "+i.getPuzzle());
-//                    }
 
                     break;
 
@@ -235,26 +227,25 @@ class Graph {
                     if (map.get(v.movePuzzle(7, 4)) == null || map.get(v.movePuzzle(7, 4)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(7, 4));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(7, 6)) == null || map.get(v.movePuzzle(7, 6)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(7, 6));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(7, 8)) == null || map.get(v.movePuzzle(7, 8)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(7, 8));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     }
-
-//                    for (Vertex i : sons) {
-//                        System.out.println("Case 7: "+i.getPuzzle());
-//                    }
 
                     break;
 
@@ -263,20 +254,18 @@ class Graph {
                     if (map.get(v.movePuzzle(8, 5)) == null || map.get(v.movePuzzle(8, 5)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(8, 5));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     } else if (map.get(v.movePuzzle(8, 7)) == null || map.get(v.movePuzzle(8, 7)) == Boolean.FALSE) {
 
                         u = new Vertex(v.movePuzzle(8, 7));
+                        u.setFather(v);
                         map.put(u.getPuzzle(), Boolean.TRUE);
                         vSons.add(u);
 
                     }
-
-//                    for (Vertex i : sons) {
-//                        System.out.println("Case 8: "+i.getPuzzle());
-//                    }
 
                     break;
 
@@ -284,7 +273,6 @@ class Graph {
 
         } else {
 
-            // System.out.println("V está resolvido!");
             vSons.add(v);
 
         }
@@ -293,7 +281,7 @@ class Graph {
 
     }
 
-    public void breadthFirstSearch(Vertex v) {
+    void breadthFirstSearch(Vertex v) {
 
         map = new HashMap<>();
         queue = new ArrayDeque<>();
@@ -327,20 +315,60 @@ class Graph {
 
     }
 
-    public void printFathers() {
+    ArrayList<String> findFathers() {
 
-        for (ArrayList<Vertex> alv : puzzles) {
-            for (Vertex v : alv) {
-                String state = v.getPuzzle();
-                for (int i = 1; i <= state.length(); i++) {
-                    System.out.print(state.charAt(i - 1) + " ");
-                    if (i % 3 == 0) {
-                        System.out.println();
-                    }
+        String state;
+        ArrayList<String> states = new ArrayList<>();
+
+//      THIS GETS THE LAST VERTEX IN THE GRAPH (SOLVED PUZZLE)
+        ArrayList<Vertex> alv = puzzles.get(puzzles.size()-1);
+        Vertex vertex = alv.get(alv.size()-1);
+
+        do {
+
+            state = vertex.getPuzzle();
+
+            states.add(state);
+
+            vertex = vertex.getFather();
+
+        } while (vertex != null);
+
+        return states;
+
+    }
+
+    void printFathers() {
+
+        ArrayList<String> path = findFathers();
+        String state;
+
+//        THIS PRINTS ALL VERTICES IN THE GRAPH
+//
+//        for (ArrayList<Vertex> alv : puzzles) {
+//            for (Vertex v : alv) {
+//                state = v.getPuzzle();
+//                for (int i = 1; i <= state.length(); i++) {
+//                    System.out.print(state.charAt(i - 1) + " ");
+//                    if (i % 3 == 0) {
+//                        System.out.println();
+//                    }
+//                }
+//                System.out.println();
+//            }
+//        }
+
+        for (int i = path.size()-1; i >= 0; i--) {
+            state = path.get(i);
+            for (int j = 1; j <= state.length(); j++) {
+                System.out.print(state.charAt(j - 1) + " ");
+                if (j % 3 == 0) {
+                    System.out.println();
                 }
-                System.out.println();
             }
+            System.out.println();
         }
+
 
     }
 }
@@ -507,6 +535,9 @@ public class BFSPuzzle {
         int numberOfPuzzles;
         Graph graph = new Graph();
         Vertex vertex;
+        long startTime;
+        long endTime;
+
 
         try {
 
@@ -517,8 +548,14 @@ public class BFSPuzzle {
                 puzzle = reader.readLine();
                 vertex = new Vertex(puzzle);
 
+                startTime = System.currentTimeMillis();
+
                 graph.breadthFirstSearch(vertex);
                 graph.printFathers();
+
+                endTime = System.currentTimeMillis();
+
+                System.out.println("Tempo gasto: " + (endTime-startTime) + "ms");
 
             }
         } catch (IOException ioe) {
