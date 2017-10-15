@@ -320,7 +320,7 @@ class Graph {
         String state;
         ArrayList<String> states = new ArrayList<>();
 
-//      THIS GETS THE LAST VERTEX IN THE GRAPH (SOLVED PUZZLE)
+        // THIS GETS THE LAST VERTEX IN THE GRAPH (SOLVED PUZZLE)
         ArrayList<Vertex> alv = puzzles.get(puzzles.size()-1);
         Vertex vertex = alv.get(alv.size()-1);
 
@@ -332,31 +332,16 @@ class Graph {
 
             vertex = vertex.getFather();
 
-        } while (vertex != null);
+        } while (vertex.getFather() != null);
 
         return states;
 
     }
 
-    void printFathers() {
+    void printMatrix() {
 
         ArrayList<String> path = findFathers();
         String state;
-
-//        THIS PRINTS ALL VERTICES IN THE GRAPH
-//
-//        for (ArrayList<Vertex> alv : puzzles) {
-//            for (Vertex v : alv) {
-//                state = v.getPuzzle();
-//                for (int i = 1; i <= state.length(); i++) {
-//                    System.out.print(state.charAt(i - 1) + " ");
-//                    if (i % 3 == 0) {
-//                        System.out.println();
-//                    }
-//                }
-//                System.out.println();
-//            }
-//        }
 
         for (int i = path.size()-1; i >= 0; i--) {
             state = path.get(i);
@@ -368,8 +353,17 @@ class Graph {
             }
             System.out.println();
         }
+    }
 
+    void printFathers() {
 
+        ArrayList<String> path = findFathers();
+
+        System.out.println(path.size());
+
+        for (int i = path.size()-1; i >= 0; i--) {
+            System.out.println(path.get(i));
+        }
     }
 }
 
@@ -535,8 +529,8 @@ public class BFSPuzzle {
         int numberOfPuzzles;
         Graph graph = new Graph();
         Vertex vertex;
-        long startTime;
-        long endTime;
+        // long startTime;
+        // long endTime;
 
 
         try {
@@ -548,14 +542,14 @@ public class BFSPuzzle {
                 puzzle = reader.readLine();
                 vertex = new Vertex(puzzle);
 
-                startTime = System.currentTimeMillis();
+                // startTime = System.currentTimeMillis();
 
                 graph.breadthFirstSearch(vertex);
                 graph.printFathers();
 
-                endTime = System.currentTimeMillis();
+                // endTime = System.currentTimeMillis();
 
-                System.out.println("Tempo gasto: " + (endTime-startTime) + "ms");
+                // System.out.println("Tempo gasto: " + (endTime-startTime) + "ms");
 
             }
         } catch (IOException ioe) {
