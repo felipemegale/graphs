@@ -1,3 +1,19 @@
+/*
+INPUT:
+Number of puzzles(N)
+Puzzle1
+Puzzle2
+Puzzle3
+.
+.
+.
+PuzzleN
+3
+145680327
+346017285
+041238567
+*/
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
