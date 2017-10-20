@@ -57,14 +57,128 @@ class Graph {
     }
   }
   
-  // Adds all edges to integer matrix
+  /**
+   * Adds all edges to the graph
+   */
   public void addEdges() {
 
-    int subPosition;
-    String subject;
+    // subCoord == subject coordinate
+    // depCoord == dependency coordinate
+    int subCoord = 0;
+    int depCoord = 0;
+    String subject, dependency;
 
-    
-    
+    // arrPos == array position
+    // for each entry, do
+    for (int arrPos = 0; arrPos < subjectGraph.length; arrPos++) {
+
+      subject = subjectGraph[arrPos].get(0);
+
+      // depNum == dependency number
+      // for each dependency, do
+      for (int depNum = 1; depNum < subjectGraph[arrPos].size(); depNum++) {
+
+        dependency = subjectGraph[arrPos].get(depNum);
+
+        // subInd == subject index
+        // get subject's and its dependency position in the subject list
+        for (int subInd = 0; subInd < subjectIndex.size(); subInd++) {
+
+          if (subject.compareTo(subjectIndex.get(subInd)) == 0) {
+
+            subCoord = subInd;
+
+          } else if (dependency.compareTo(subjectIndex.get(subInd)) == 0) {
+
+            depCoord = subInd;
+
+          }
+        }
+
+        vertices[subCoord][depCoord] = 1;
+
+      }
+    }
+  }
+
+  /**
+   * Finds whether a line in the matrix contains only zeroes
+   * @param lineNumber is the line one wishes to analyze
+   * @param vertices is the matrix one wishes to analyze
+   * @return Whether the line analyzed has only zeroes
+   */
+  public boolean onlyZeroes(int lineNumber, int[][] matrix) {
+
+    boolean isZeroes = true;
+
+    for (int i = 0; i < numberOfVertices; i++)
+      if (matrix[lineNumber][i] == 1)
+        isZeroes = false;
+
+    return isZeroes;
+  }
+
+  /**
+   * Finds whether a graph has no more edges
+   * @param matrix The adjacency matrix one wishes to analyze
+   * @return whether the matrix analyzed has no edges
+   */
+  public boolean noEdges(int[][] matrix) {
+
+    boolean noEdges = true;
+
+    for (int i = 0; i < numberOfVertices; i++)
+      for (int j = 0; j < numberOfVertices; j++)
+        if (matrix[i][j] == 1)
+          noEdges = false;
+
+    return noEdges;
+  }
+
+
+  /**
+   * Runs Kahn's algorithm to return a topologically sorted list of subjects
+   */
+  public ArrayList<String> topologicalSorting() {
+
+    // subjInd is the index of the subject in the sorted list
+    // tempVert is a copy of the integer matrix vertices
+    int subjInd;
+    int tempVert[][] = vertices;
+    ArrayList<String> temp = new ArrayList<>();
+    ArrayList<String> sorted = new ArrayList<>();
+
+    // Gets all vertices without input arc
+    for (int i = 0; i < subjectGraph.length; i++) {
+      if (subjectGraph[i].size() == 1)
+        temp.add(subjectGraph[i].get(0));
+    }
+
+    while (!temp.isEmpty()) {
+
+      sorted.add(temp.get(0));
+      subjInd = subjectIndex.indexOf(temp.get(0));
+      temp.remove(0);
+
+      /*
+       * Percorre a coluna daquela materia
+       * para achar as materias que dependem dela
+       */
+      for (int i = 0; i < numberOfVertices; i++) {
+
+        // se tiver dependencia, tira a aresta e verifica se essa
+        // materia ainda depende de outras
+        if (tempVert[i][subjInd] == 1) {
+
+          tempVert[i][subjInd] = 0;
+
+          if (onlyZeroes(i, tempVert))
+            temp.add(subjectIndex.get(i));
+        }
+      }
+    }
+
+    return sorted;
   }
 
   /**
@@ -81,24 +195,24 @@ class Graph {
       }
 
     }
-
   }
 
   /**
-   * Prints all elements present in a given graph
+   * Prints the subject-dependency matrix
    */
-  public void printElements() {
+  public void printMatrix() {
 
     for (int i = 0; i < numberOfVertices; i++) {
 
       for (int j = 0; j < numberOfVertices; j++) {
 
-        System.out.println(vertices[i][j]);
+        System.out.print(vertices[i][j] + " ");
 
       }
 
-    }
+      System.out.println();
 
+    }
   }
 
 }
@@ -205,12 +319,18 @@ public class TopSort {
     ArrayList<String> partialProcessedList = partialProcess(readList);
     ArrayList<String> finalList = finalList(partialProcessedList);
     ArrayList<String> subjectList = subjectList(finalList);
+    ArrayList<String> sortedList;
 
     Graph graph = new Graph(subjectList.size(), subjectList, readList);
 
     graph.populateSubjectGraph();
+    graph.addEdges();
     // graph.printSubjectGraph();
-    // graph.printElements();
+    // graph.printMatrix();
+    sortedList = graph.topologicalSorting();
+
+    for (String str : sortedList)
+      System.out.println(str);
 
   }
 }
