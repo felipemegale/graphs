@@ -8,6 +8,7 @@ Puzzle3
 .
 .
 PuzzleN
+
 3
 145680327
 346017285
@@ -23,6 +24,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 class Graph {
+
     private ArrayList<ArrayList<Vertex>> puzzles;
     private ArrayList<Vertex> sons;
     private ArrayDeque<Vertex> queue;
@@ -545,9 +547,8 @@ public class BFSPuzzle {
         int numberOfPuzzles;
         Graph graph = new Graph();
         Vertex vertex;
-        // long startTime;
-        // long endTime;
-
+        long startTime;
+        long endTime;
 
         try {
 
@@ -558,14 +559,14 @@ public class BFSPuzzle {
                 puzzle = reader.readLine();
                 vertex = new Vertex(puzzle);
 
-                // startTime = System.currentTimeMillis();
+                startTime = System.currentTimeMillis();
 
                 graph.breadthFirstSearch(vertex);
                 graph.printFathers();
 
-                // endTime = System.currentTimeMillis();
+                endTime = System.currentTimeMillis();
 
-                // System.out.println("Tempo gasto: " + (endTime-startTime) + "ms");
+                System.out.println("Tempo gasto: " + (endTime-startTime) + "ms");
 
             }
         } catch (IOException ioe) {
