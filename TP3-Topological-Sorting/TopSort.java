@@ -228,9 +228,11 @@ public class TopSort {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     ArrayList<String> readList = new ArrayList<>();
     String subject;
+    int ignore;
 
     try {
 
+      ignore = Integer.parseInt(reader.readLine());
       subject = reader.readLine();
 
       while (subject != null) {
@@ -322,6 +324,7 @@ public class TopSort {
     ArrayList<String> sortedList;
 
     Graph graph = new Graph(subjectList.size(), subjectList, readList);
+    System.out.println("SubjectList size: " + subjectList.size());
 
     graph.populateSubjectGraph();
     graph.addEdges();
