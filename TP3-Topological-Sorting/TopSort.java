@@ -324,7 +324,6 @@ public class TopSort {
     ArrayList<String> sortedList;
 
     Graph graph = new Graph(subjectList.size(), subjectList, readList);
-    System.out.println("SubjectList size: " + subjectList.size());
 
     graph.populateSubjectGraph();
     graph.addEdges();
